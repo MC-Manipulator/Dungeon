@@ -7,13 +7,49 @@ public class GameUIManager : MonoBehaviour, Initializable
 {
     public List<GameObject> UIList;
 
+    [Header("初始化列表")]
+    public List<GameObject> initializableList;
+
     public void Initialize()
     {
+        foreach (GameObject gb in initializableList)
+        {
+            Initializable i = (Initializable)(FetchComponent.GetSpecificComponent<Initializable>(gb));
+            i.Initialize();
+        }
+
+
         GameManager.instance.GamePauseEvent += OnGamePause;
         GameManager.instance.GameResumeEvent += OnGameResume;
 
         GameManager.instance.SwitchToDungeonBuilding += OnSwitchToDungeonBuilding;
         GameManager.instance.SwitchToTimePassing += OnSwitchToTimePassing;
+    }
+
+    public void SwitchMesh()
+    {
+        if (GameManager.instance.isShowingMesh)
+        {
+            HideMesh();
+        }
+        else
+        {
+            ShowMesh();
+        }
+    }
+
+    public void ShowMesh()
+    {
+        GameManager.instance.ShowMesh();
+        GameObject switchButton = FindObjectInListByName("ShowMeshButton");
+        switchButton.GetComponentInChildren<TMP_Text>().text = "Hide Mesh";
+    }
+
+    public void HideMesh()
+    {
+        GameManager.instance.HideMesh();
+        GameObject switchButton = FindObjectInListByName("ShowMeshButton");
+        switchButton.GetComponentInChildren<TMP_Text>().text = "Show Mesh";
     }
 
     public void SwitchGameStage()
@@ -99,14 +135,14 @@ public class GameUIManager : MonoBehaviour, Initializable
     public void OnSwitchToDungeonBuilding()
     {
 
-        GameObject switchButton = FindObjectInListByName("SwitchButton");
+        GameObject switchButton = FindObjectInListByName("SwitchStageButton");
         switchButton.GetComponentInChildren<TMP_Text>().text = "Switch To Time Passing";
     }
 
     public void OnSwitchToTimePassing()
     {
 
-        GameObject switchButton = FindObjectInListByName("SwitchButton");
+        GameObject switchButton = FindObjectInListByName("SwitchStageButton");
         switchButton.GetComponentInChildren<TMP_Text>().text = "Switch To Dungeon Building";
     }
 }

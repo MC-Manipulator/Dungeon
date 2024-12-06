@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ZoneManager : MonoBehaviour, Initializable
 {
+    public static ZoneManager instance;
+
     [Header("µÿ¿Œ")]
     public GameObject dungeon;
 
@@ -23,6 +25,11 @@ public class ZoneManager : MonoBehaviour, Initializable
 
     public void Initialize()
     {
+        if (instance == null)
+            instance = this;
+        if (instance != null && instance != this)
+            gameObject.SetActive(false);
+
         dungeon = GameObject.Find("Dungeon");
         if (dungeon == null)
             dungeon = new GameObject("Dungeon");
@@ -47,7 +54,16 @@ public class ZoneManager : MonoBehaviour, Initializable
         map.transform.SetParent(newZoneObject.transform);
         entity.transform.SetParent(newZoneObject.transform);
 
+        newZone.map = map;
+        newZone.entity = entity;
+
+        newZone.size = 20;
+
+        newZone.Initialize();
+
         zoneList.Add(newZone);
+
+        currentZone = newZoneObject;
     }
 
     public void SwitchToLastZone()

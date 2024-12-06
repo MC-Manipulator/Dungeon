@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour, Initializable
 {
+    public static CameraManager instance;
+
     public float moveSpeed = 0.5f; // 缩放速度
 
     public float zoomSpeed = 0.5f; // 缩放速度
@@ -15,8 +17,14 @@ public class CameraManager : MonoBehaviour, Initializable
 
     public GameObject cameraObject;
 
+
     public void Initialize()
     {
+        if (instance == null)
+            instance = this;
+        if (instance != null && instance != this)
+            gameObject.SetActive(false);
+
         currentZoom = Camera.main.orthographicSize - scrollInput * zoomSpeed;
 
         PlayerInputManager.instance.ZoomEvent += Zoom;
@@ -28,6 +36,12 @@ public class CameraManager : MonoBehaviour, Initializable
         Vector3 moveDirection = PlayerInputManager.instance.inputDirection;
 
         cameraObject.transform.position += moveDirection * moveSpeed * currentZoom / maxZoom;
+    }
+
+    public void DirectMove(Vector2 position)
+    {
+        Vector3 trans = new Vector3(position.x, position.y, -10);
+        cameraObject.transform.position = trans;
     }
 
     //AI生成

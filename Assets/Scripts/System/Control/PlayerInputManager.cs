@@ -19,6 +19,14 @@ public class PlayerInputManager : MonoBehaviour, Initializable
 
     public event Action ResumeEvent;
 
+    public event Action MonsterBoardEvent;
+
+    public event Action PlaceEvent;
+
+    public event Action CancelEvent;
+
+    public event Action BuildingBoardEvent;
+
     public static PlayerInputManager instance;
 
     private bool hasInitialized = false;
@@ -32,8 +40,8 @@ public class PlayerInputManager : MonoBehaviour, Initializable
 
         _isPaused = false;
 
-        GameManager.instance.GamePauseEvent += Pause;
-        GameManager.instance.GameResumeEvent += Resume;
+        GameManager.instance.GamePauseEvent += OnGamePause;
+        GameManager.instance.GameResumeEvent += OnGameResume;
 
         hasInitialized = true;
     }
@@ -49,8 +57,27 @@ public class PlayerInputManager : MonoBehaviour, Initializable
         // ºÏ≤‚∑ΩœÚ ‰»Î
         inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+
         if (!_isPaused)
         {
+
+            if (Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (DungeonManager.instance.isBuilding)
+                {
+                    CancelEvent?.Invoke();
+                    return;
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                if (DungeonManager.instance.isBuilding)
+                {
+                    PlaceEvent?.Invoke();
+                    return;
+                }
+            }
 
             if (scrollInput != 0)
             {
@@ -67,6 +94,19 @@ public class PlayerInputManager : MonoBehaviour, Initializable
             {
                 PauseEvent?.Invoke();
             }
+
+
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                BuildingBoardEvent?.Invoke();
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                MonsterBoardEvent?.Invoke();
+            }
+
         }
         else if (_isPaused)
         {
@@ -77,12 +117,12 @@ public class PlayerInputManager : MonoBehaviour, Initializable
         }
     }
 
-    public void Pause()
+    public void OnGamePause()
     {
         _isPaused = true;
     }
 
-    public void Resume()
+    public void OnGameResume()
     {
         _isPaused = false;
     }
