@@ -46,9 +46,7 @@ public abstract class AbstractEntity : MonoBehaviour
         // �����˺�ֵ
         float damageValue = Damage();
         if (damageValue > 0)
-        {
             target.Hurt(damageValue);  // �˺�Ŀ��
-        }
     }
 }
 

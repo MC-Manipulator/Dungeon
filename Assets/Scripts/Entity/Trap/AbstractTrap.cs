@@ -15,4 +15,11 @@ public abstract class AbstractTrap : AbstractEntity
     {
         throw new System.NotImplementedException();
     }
+
+    protected override void Hurt(float damage)
+    {
+        currentHealth -= damage - defence;
+        if (currentHealth <= 0)
+            Die();
+    }
 }
