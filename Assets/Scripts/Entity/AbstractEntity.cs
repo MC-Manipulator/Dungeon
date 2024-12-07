@@ -23,9 +23,7 @@ public abstract class AbstractEntity : MonoBehaviour
         // 计算伤害值
         float damageValue = Damage();
         if (damageValue > 0)
-        {
             target.Hurt(damageValue);  // 伤害目标
-        }
     }
 }
 
