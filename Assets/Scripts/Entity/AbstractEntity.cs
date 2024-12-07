@@ -17,29 +17,27 @@ public abstract class AbstractEntity : MonoBehaviour
 
     protected abstract void Die();
 
-    protected abstract void Hurt(float damage);
+    public abstract float Hurt(float damage);
 
-    public void Attack(AbstractEntity target)
-    {
-        // 计算伤害值
-        float damageValue = Damage();
-        if (damageValue > 0)
-            target.Hurt(damageValue);  // 伤害目标
-    }
+    public abstract void Attack(AbstractEntity target);
 
-    protected Collider[] GetCollidingColliders()
+    protected AbstractEntity[] GetCollidingColliders()
     {
         // 使用Physics.OverlapBox来获取与当前碰撞体接触的所有碰撞体
         // 注意：这个例子使用的是BoxCollider，如果你使用的是其他类型的碰撞体，你可能需要调整这个方法
         if (_collider == null)
         {
             Debug.LogError("没有找到BoxCollider组件，请确保你的游戏对象上挂载了BoxCollider");
-            return new Collider[0];
+            return new AbstractEntity[0];
         }
 
         Collider[] colliders = Physics.OverlapBox(_collider.bounds.center, _collider.bounds.extents);
 
-        return colliders;
+        AbstractEntity[] entities = new AbstractEntity[colliders.Length];
+        for (int i = 0; i < colliders.Length; i++)
+            entities[i] = colliders[i].GetComponent<AbstractEntity>();
+
+        return entities;
     }
 
     private void Start()
