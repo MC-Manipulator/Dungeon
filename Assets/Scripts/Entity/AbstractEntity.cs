@@ -125,9 +125,7 @@ public enum EntityType
         // �����˺�ֵ
         float damageValue = Damage();
         if (damageValue > 0)
-        {
             target.Hurt(damageValue);  // �˺�Ŀ��
-        }
     }
 }
 
