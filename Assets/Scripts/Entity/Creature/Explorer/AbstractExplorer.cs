@@ -4,4 +4,5 @@ using UnityEngine;
 
 public abstract class AbstractExplorer : AbstractCreature
 {
+    public new CreatureType creatureType = CreatureType.Explorer;
 }
