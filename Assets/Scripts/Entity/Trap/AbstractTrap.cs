@@ -16,10 +16,12 @@ public abstract class AbstractTrap : AbstractEntity
         throw new System.NotImplementedException();
     }
 
-    protected override void Hurt(float damage)
+    public override float Hurt(float damage)
     {
-        currentHealth -= damage - defence;
-        if (currentHealth <= 0)
-            Die();
+        float hurt = damage * defence;
+        if (hurt < 0)
+            hurt = 0;
+        currentHealth -= hurt;
+        return hurt;
     }
 }

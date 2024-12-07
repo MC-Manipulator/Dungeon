@@ -40,29 +40,27 @@ public abstract class AbstractEntity : MonoBehaviour
     protected abstract void MidUpdate();
     protected abstract void PostUpdate();
 
-    protected abstract void Hurt(float damage);
+    public abstract float Hurt(float damage);
 
-    public void Attack(AbstractEntity target)
-    {
-        // ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½Öµ
-        float damageValue = Damage();
-        if (damageValue > 0)
-            target.Hurt(damageValue);  // ï¿½Ëºï¿½Ä¿ï¿½ï¿½
-    }
+    public abstract void Attack(AbstractEntity target);
 
-    protected Collider[] GetCollidingColliders()
+    protected AbstractEntity[] GetCollidingColliders()
     {
-        // Ê¹ÓÃPhysics.OverlapBoxÀ´»ñÈ¡Óëµ±Ç°Åö×²Ìå½Ó´¥µÄËùÓĞÅö×²Ìå
-        // ×¢Òâ£ºÕâ¸öÀı×ÓÊ¹ÓÃµÄÊÇBoxCollider£¬Èç¹ûÄãÊ¹ÓÃµÄÊÇÆäËûÀàĞÍµÄÅö×²Ìå£¬Äã¿ÉÄÜĞèÒªµ÷ÕûÕâ¸ö·½·¨
+        // Ê¹ï¿½ï¿½Physics.OverlapBoxï¿½ï¿½ï¿½ï¿½È¡ï¿½ëµ±Ç°ï¿½ï¿½×²ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½
+        // ×¢ï¿½â£ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½BoxColliderï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½×²ï¿½å£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (_collider == null)
         {
-            Debug.LogError("Ã»ÓĞÕÒµ½BoxCollider×é¼ş£¬ÇëÈ·±£ÄãµÄÓÎÏ·¶ÔÏóÉÏ¹ÒÔØÁËBoxCollider");
-            return new Collider[0];
+            Debug.LogError("Ã»ï¿½ï¿½ï¿½Òµï¿½BoxColliderï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½ï¿½ï¿½ï¿½ï¿½BoxCollider");
+            return new AbstractEntity[0];
         }
 
         Collider[] colliders = Physics.OverlapBox(_collider.bounds.center, _collider.bounds.extents);
 
-        return colliders;
+        AbstractEntity[] entities = new AbstractEntity[colliders.Length];
+        for (int i = 0; i < colliders.Length; i++)
+            entities[i] = colliders[i].GetComponent<AbstractEntity>();
+
+        return entities;
     }
 
     private void Start()
@@ -70,7 +68,7 @@ public abstract class AbstractEntity : MonoBehaviour
         _collider = GetComponent<Collider>();
         if (_collider == null)
         {
-            Debug.LogError("Ã»ÓĞÕÒµ½Åö×²Ìå×é¼ş£¡");
+            Debug.LogError("Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½×²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         }
     }
 }
