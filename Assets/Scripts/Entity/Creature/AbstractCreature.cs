@@ -10,7 +10,7 @@ public abstract class AbstractCreature : AbstractEntity
     public float maxSan;        //最大san值。
     public float res;           //抗性，影响被攻击时san值的抵抗程度。
 
-    protected abstract void Move();
+    protected abstract Vector2 Move(Vector2 targat);
 
     protected abstract void Action();
 
