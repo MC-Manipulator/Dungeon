@@ -5,6 +5,7 @@ using UnityEngine.PlayerLoop;
 
 public abstract class AbstractEntity : MonoBehaviour
 {
+    public EntityType entityType;
     public float currentHealth;
     public float maxHealth;
     public float attack;
@@ -12,8 +13,8 @@ public abstract class AbstractEntity : MonoBehaviour
     public float speed;
     public Vector2 mapPosition;
 
-    protected abstract void Damage();
-    protected abstract void Hurt();
+    protected abstract float Damage();
+
     protected abstract void Die();
 
     private void Awake()
@@ -37,4 +38,22 @@ public abstract class AbstractEntity : MonoBehaviour
     protected abstract void PreUpdate();
     protected abstract void MidUpdate();
     protected abstract void PostUpdate();
+
+    protected abstract void Hurt(float damage);
+
+    public void Attack(AbstractEntity target)
+    {
+        // �����˺�ֵ
+        float damageValue = Damage();
+        if (damageValue > 0)
+        {
+            target.Hurt(damageValue);  // �˺�Ŀ��
+        }
+    }
+}
+
+public enum EntityType
+{
+    Creature,
+    Trap
 }
