@@ -7,11 +7,11 @@ using UnityEngine;
 public abstract class AbstractCreature : AbstractEntity
 {
     public new EntityType entityType = EntityType.Creature;
-    public CreatureType creatureType;   //  ÉúÎïÀàÐÍ
-    public float movableDistance;       //  ¿ÉÒÆ¶¯¾àÀë
-    public float currentSan;            //  sanÖµ£¬Ó°Ïì¾ö²ß¡£
-    public float maxSan;                //  ×î´ósanÖµ¡£
-    public float res;                   //  ¿¹ÐÔ£¬Ó°Ïì±»¹¥»÷Ê±sanÖµµÄµÖ¿¹³Ì¶È¡£
+    public CreatureType creatureType;   //  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float movableDistance;       //  ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float currentSan;            //  sanÖµï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ß¡ï¿½
+    public float maxSan;                //  ï¿½ï¿½ï¿½sanÖµï¿½ï¿½
+    public float res;                   //  ï¿½ï¿½ï¿½Ô£ï¿½Ó°ï¿½ì±»ï¿½ï¿½ï¿½ï¿½Ê±sanÖµï¿½ÄµÖ¿ï¿½ï¿½Ì¶È¡ï¿½
 
     protected Vector2 Move(Vector2 targat)
     {
@@ -30,7 +30,7 @@ public abstract class AbstractCreature : AbstractEntity
 
     public override void Attack(AbstractEntity target)
     {
-        // ¼ÆËãÉËº¦Öµ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½Öµ
         float damageValue = Damage();
         if (damageValue > 0)
         {

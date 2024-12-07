@@ -9,27 +9,27 @@ public abstract class AbstractExplorer : AbstractCreature
 
     protected override void Action()
     {
-        if (currentSan == 0)    //ÈôsanÖµÎªÁã£¬ÔòÖØÖÃsanÖµ²¢Ìø¹ý»ØºÏ
+        if (currentSan == 0)    //ï¿½ï¿½sanÖµÎªï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sanÖµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øºï¿½
         {
             currentSan = maxSan;
             return;
         }
         AbstractCreature[] monsters = GetCollidingCreature(CreatureType.Monster);
-        if (monsters.Length > 0)   //Èô¼ì²âµ½¹ÖÎï£¬Ôò¹¥»÷¹ÖÎï
+        if (monsters.Length > 0)   //ï¿½ï¿½ï¿½ï¿½âµ½ï¿½ï¿½ï¿½ï£¬ï¿½ò¹¥»ï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            //¼ÆËã¹¥»÷·½Ïò
+            //ï¿½ï¿½ï¿½ã¹¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Vector2 normal = (mapPosition - monsters[0].mapPosition).normalized;
             Vector2 targetPos = attackRange * normal + monsters[0].mapPosition;
 
-            //¼ÆËãÒÆ¶¯ºóµÄÐÂ×ø±ê
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Vector2 newPos = Move(targetPos);
             mapPosition = newPos;
 
-            //Èôµ½´ï¹¥»÷¾àÀë£¬Ôò¹¥»÷¹ÖÎï
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¹¥ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ò¹¥»ï¿½ï¿½ï¿½ï¿½ï¿½
             if (Vector2.Distance(newPos, monsters[0].mapPosition) <= attackRange)
                 Attack(monsters[0]);
         }
-        else  //ÈôÎ´¼ì²âµ½¹ÖÎï£¬ÔòÒÆ¶¯µ½Ä¿±êÎ»ÖÃ
+        else  //ï¿½ï¿½Î´ï¿½ï¿½âµ½ï¿½ï¿½ï¿½ï£¬ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Î»ï¿½ï¿½
         {
             mapPosition = Move(target);
         }
