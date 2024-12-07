@@ -129,19 +129,23 @@ public enum EntityType
             target.Hurt(damageValue);  // �˺�Ŀ��
     }
 
-    protected Collider[] GetCollidingColliders()
+    protected AbstractEntity[] GetCollidingColliders()
     {
         // ʹ��Physics.OverlapBox����ȡ�뵱ǰ��ײ��Ӵ���������ײ��
         // ע�⣺�������ʹ�õ���BoxCollider�������ʹ�õ����������͵���ײ�壬�������Ҫ�����������
         if (_collider == null)
         {
             Debug.LogError("û���ҵ�BoxCollider�������ȷ�������Ϸ�����Ϲ�����BoxCollider");
-            return new Collider[0];
+            return new AbstractEntity[0];
         }
 
         Collider[] colliders = Physics.OverlapBox(_collider.bounds.center, _collider.bounds.extents);
 
-        return colliders;
+        AbstractEntity[] entities = new AbstractEntity[colliders.Length];
+        for (int i = 0; i < colliders.Length; i++)
+            entities[i] = colliders[i].GetComponent<AbstractEntity>();
+
+        return entities;
     }
 
     private void Start()
