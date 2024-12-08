@@ -6,15 +6,15 @@ using UnityEngine;
 
 public abstract class AbstractEntity : MonoBehaviour
 {
-    private Collider _collider;
-    public EntityType entityType;
-    public float currentHealth;
-    public float maxHealth;
-    public float attack;
-    public float defence;
-    public float speed;
-    public Vector2 mapPosition;
-    public float attackRange;
+    private Collider _collider;     // 当前碰撞体
+    public EntityType entityType;   // 实体类型
+    public float currentHealth;     // 当前健康值
+    public float maxHealth;         // 最大健康值
+    public float attack;            // 攻击力
+    public float defence;           // 防御力
+    public float speed;             // 速度
+    public Vector2 mapPosition;     // 地图坐标
+    public float attackRange;       // 攻击范围
 
     protected abstract float Damage();
 
@@ -26,6 +26,7 @@ public abstract class AbstractEntity : MonoBehaviour
 
     public abstract void Attack(AbstractEntity target);
 
+    //  获取与当前碰撞体接触的所有AbstractEntity
     protected AbstractEntity[] GetCollidingColliders()
     {
         // 使用Physics.OverlapBox来获取与当前碰撞体接触的所有碰撞体
@@ -45,6 +46,7 @@ public abstract class AbstractEntity : MonoBehaviour
         return entities;
     }
 
+    //  获取与当前碰撞体接触的AbstractCreature
     protected AbstractCreature[] GetCollidingCreature(CreatureType type)
     {
         AbstractEntity[] entitys = GetCollidingColliders();
@@ -68,6 +70,7 @@ public abstract class AbstractEntity : MonoBehaviour
 
     private void Start()
     {
+        // 获取当前碰撞体
         _collider = GetComponent<Collider>();
         if (_collider == null)
         {

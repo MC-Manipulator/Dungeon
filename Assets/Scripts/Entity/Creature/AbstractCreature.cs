@@ -7,11 +7,11 @@ using UnityEngine;
 public abstract class AbstractCreature : AbstractEntity
 {
     public new EntityType entityType = EntityType.Creature;
-    public CreatureType creatureType;
-    public float movableDistance;
-    public float currentSan;    //san值，影响决策。
-    public float maxSan;        //最大san值。
-    public float res;           //抗性，影响被攻击时san值的抵抗程度。
+    public CreatureType creatureType;   //  生物类型
+    public float movableDistance;       //  可移动距离
+    public float currentSan;            //  san值，影响决策。
+    public float maxSan;                //  最大san值。
+    public float res;                   //  抗性，影响被攻击时san值的抵抗程度。
 
     protected Vector2 Move(Vector2 targat)
     {
