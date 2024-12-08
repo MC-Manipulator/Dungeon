@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -43,6 +45,8 @@ public abstract class AbstractEntity : MonoBehaviour
 
     public abstract float Hurt(float damage);
 
+    protected abstract void Action();
+
     public abstract void Attack(AbstractEntity target);
 
     protected AbstractEntity[] GetCollidingColliders()
@@ -62,6 +66,27 @@ public abstract class AbstractEntity : MonoBehaviour
             entities[i] = colliders[i].GetComponent<AbstractEntity>();
 
         return entities;
+    }
+
+    protected AbstractCreature[] GetCollidingCreature(CreatureType type)
+    {
+        AbstractEntity[] entitys = GetCollidingColliders();
+        List<ValueTuple<AbstractCreature, float>> explorers = new();
+        foreach (AbstractEntity entity in entitys)
+        {
+            if (entity.entityType == EntityType.Creature)
+            {
+                AbstractCreature creature = (AbstractCreature)entity;
+                if (creature.creatureType == type)
+                {
+                    float distance = Vector2.Distance(mapPosition, creature.mapPosition);
+                    explorers.Add((creature, distance));
+                }
+            }
+        }
+        explorers.Sort((x, y) => x.Item2.CompareTo(y.Item2));
+
+        return explorers.Select(x => x.Item1).ToArray();
     }
 
     private void Start()
