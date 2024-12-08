@@ -16,6 +16,19 @@ public abstract class AbstractTrap : AbstractEntity
         throw new System.NotImplementedException();
     }
 
+    public override void Attack(AbstractEntity target)
+    {
+        float damageValue = Damage();
+        target.Hurt(damageValue);
+    }
+
+    protected override void Action()
+    {
+        AbstractCreature[] explorers = GetCollidingCreature(CreatureType.Explorer);
+        foreach (AbstractCreature explorer in explorers)
+            Attack(explorer);
+    }
+
     public override float Hurt(float damage)
     {
         float hurt = damage * defence;
