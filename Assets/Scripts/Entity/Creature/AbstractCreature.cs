@@ -1,16 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class AbstractCreature : AbstractEntity
 {
     public new EntityType entityType = EntityType.Creature;
     public CreatureType creatureType;
+    public float movableDistance;
     public float currentSan;    //san值，影响决策。
     public float maxSan;        //最大san值。
     public float res;           //抗性，影响被攻击时san值的抵抗程度。
 
-    protected abstract Vector2 Move(Vector2 targat);
+    protected Vector2 Move(Vector2 targat)
+    {
+        throw new System.NotImplementedException();
+    }
 
     protected abstract void Action();
 
@@ -47,6 +53,27 @@ public abstract class AbstractCreature : AbstractEntity
         if (currentHealth <= 0)
             Die();
         return hurt;
+    }
+
+    protected AbstractCreature[] GetCollidingCreature(CreatureType type)
+    {
+        AbstractEntity[] entitys = GetCollidingColliders();
+        List<ValueTuple<AbstractCreature, float>> explorers = new();
+        foreach (AbstractEntity entity in entitys)
+        {
+            if (entity.entityType == EntityType.Creature)
+            {
+                AbstractCreature creature = (AbstractCreature)entity;
+                if (creature.creatureType == type)
+                {
+                    float distance = Vector2.Distance(mapPosition, creature.mapPosition);
+                    explorers.Add((creature, distance));
+                }
+            }
+        }
+        explorers.Sort((x, y) => x.Item2.CompareTo(y.Item2));
+
+        return explorers.Select(x => x.Item1).ToArray();
     }
 }
 
