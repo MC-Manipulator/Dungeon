@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//MenuManagerÊÇ½öÔÚÖ÷½çÃæÖÐ½øÐÐ¹ÜÀíµÄ¹ÜÀíÀà£¬¸ºÔðÖÐ×ªµ÷ÓÃÒÔ¼°¹ÜÀíÓÎÏ·½ø³Ì
-//Ö÷½çÃæÖÐµÄÆäËûÀàÈç¹ûÒª¶ÔÓÎÏ·½øÐÐÊµ¼Ê¸ü¸Ä£¬ÐèÒªÍ¨¹ýMenuManager½øÐÐµ÷ÓÃ
+//MenuManagerï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½Êµï¿½Ê¸ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ÒªÍ¨ï¿½ï¿½MenuManagerï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½
 public class MenuManager : MonoBehaviour
 {
-    //´ó¶àÊýManagerÀà»áÓÐÒ»¸ö¾²Ì¬µÄinstance±äÁ¿£¬Í¨¹ý¸Ã±äÁ¿¿ÉÒÔÊµÏÖµ¥ÀýÄ£Ê½
-    //Ê¹ÓÃµ¥ÀýÄ£Ê½¿ÉÒÔÃâÈ¥Ò»Ð©µ÷ÓÃÉÏµÄÂé·³£¬µ«¹ý¶àÊ¹ÓÃµ¥ÀýÄ£Ê½Ò²»áµ¼ÖÂ½á¹¹ÉÏµÄ»ìÂÒ
-    //Òò´Ë£¬ÔÚÒ»Ð©±¾´ÎÏîÄ¿ÖÐ£¬ÓÉÎÒ±àÐ´µÄ½á¹¹Àï£¬¾¡¹ÜÓÐ²¿·ÖµØ·½ÓÃµ½µ¥ÀýÄ£Ê½£¬µ«ÕûÌå»¹ÊÇ³ÊÏÖ²¿·Ö-ÕûÌåµÄ¹ØÏµ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Managerï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½ï¿½instanceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½Öµï¿½ï¿½ï¿½Ä£Ê½
+    //Ê¹ï¿½Ãµï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¥Ò»Ð©ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½é·³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½Ä£Ê½Ò²ï¿½áµ¼ï¿½Â½á¹¹ï¿½ÏµÄ»ï¿½ï¿½ï¿½
+    //ï¿½ï¿½Ë£ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ð£ï¿½ï¿½ï¿½ï¿½Ò±ï¿½Ð´ï¿½Ä½á¹¹ï¿½ï£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ÖµØ·ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å»¹ï¿½Ç³ï¿½ï¿½Ö²ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½Ä¹ï¿½Ïµ
     public static MenuManager instance; 
 
     void Awake()
     {
-        //ÎªÁË·ÀÖ¹ÒâÍâÇé¿öÏÂ³öÏÖ¶à¸öÊµÀý£¬»áÔÚMonoehaviourµÄAwakeº¯Êý´¦ÉèÖÃ¼ì²âinstanceµÄÌõ¼þÓï¾ä
+        //Îªï¿½Ë·ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â³ï¿½ï¿½Ö¶ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Monoehaviourï¿½ï¿½Awakeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½instanceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (instance == null)
             instance = this;
         if (instance != null && instance != this)
@@ -28,11 +28,11 @@ public class MenuManager : MonoBehaviour
 
     public void ExitGame()
     {
-        //ÔÚ×îÖÕµ¼³öµÄÓÎÏ·ÖÐ£¬Èç¹ûÖ´ÐÐÕâÌõ´úÂë£¬ÄÇÃ´³ÌÐò¾Í»áÖ±½ÓÍË³ö£¬µ«ÔÚ±à¼­Æ÷ÖÐ£¬ÕâÌõ´úÂëÃ»ÓÐÐ§¹û
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ð£ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½Í»ï¿½Ö±ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú±à¼­ï¿½ï¿½ï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ð§ï¿½ï¿½
         Application.Quit();
 
 #if UNITY_EDITOR
-        //ÒÔºê¶¨Òå»®·ÖµÄ³ÌÐò¿é¡£°´ÕÕÌõ¼þÄÚÈÝ£¬Õâ²¿·Ö´úÂëÖ»»áÔÚUnity±à¼­Æ÷ÖÐÖ´ÐÐ
+        //ï¿½Ôºê¶¨ï¿½å»®ï¿½ÖµÄ³ï¿½ï¿½ï¿½é¡£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½â²¿ï¿½Ö´ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½Unityï¿½à¼­ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
 

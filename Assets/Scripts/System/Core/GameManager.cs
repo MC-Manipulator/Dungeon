@@ -10,7 +10,7 @@ public enum GameStage
 }
 
 ///<summary>
-///GameManagerÊÇÓÎÏ·³¡¾°ÖÐµÄºËÐÄ¹ÜÀíÏµÍ³£¬¸ºÔðÖÐ×ªµ÷ÓÃÒÔ¼°ÊµÏÖÓëÓÎÏ·½ø³ÌÏà¹ØµÄ¹¦ÄÜ¡£
+///GameManagerï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄºï¿½ï¿½Ä¹ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ¹ï¿½ï¿½Ü¡ï¿½
 ///</summary>
 public class GameManager : MonoBehaviour, Initializable
 {
@@ -21,11 +21,11 @@ public class GameManager : MonoBehaviour, Initializable
     public event Action SwitchToTimePassing;
     public event Action SwitchToDungeonBuilding;
 
-    [Header("ÓÎÏ·µ±Ç°½×¶Î")]
+    [Header("ï¿½ï¿½Ï·ï¿½ï¿½Ç°ï¿½×¶ï¿½")]
     public GameStage gameStage;
     public bool isPaused;
 
-    [Header("³õÊ¼»¯ÁÐ±í")]
+    [Header("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ð±ï¿½")]
     public List<GameObject> initializableList;
 
     private void Awake()
@@ -84,14 +84,14 @@ public class GameManager : MonoBehaviour, Initializable
 
     public void Pause()
     {
-        Debug.Log("ÓÎÏ·ÔÝÍ£");
+        Debug.Log("ï¿½ï¿½Ï·ï¿½ï¿½Í£");
         isPaused = true;
         GamePauseEvent?.Invoke();
     }
 
     public void Resume()
     {
-        Debug.Log("ÓÎÏ·»Ö¸´");
+        Debug.Log("ï¿½ï¿½Ï·ï¿½Ö¸ï¿½");
         isPaused = false;
         GameResumeEvent?.Invoke();
     }
