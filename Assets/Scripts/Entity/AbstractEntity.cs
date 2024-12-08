@@ -12,6 +12,7 @@ public abstract class AbstractEntity : MonoBehaviour
     public float defence;
     public float speed;
     public Vector2 mapPosition;
+    public float attackRange;
 
     protected abstract float Damage();
 
