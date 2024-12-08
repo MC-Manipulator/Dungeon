@@ -57,6 +57,12 @@ public class PlayerInputManager : MonoBehaviour, Initializable
         // ºÏ≤‚∑ΩœÚ ‰»Î
         inputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            UnityEditor.EditorApplication.isPaused = true;
+        }
+#endif
 
         if (!_isPaused)
         {

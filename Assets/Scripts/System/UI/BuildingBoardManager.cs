@@ -36,6 +36,11 @@ public class BuildingBoardManager : MonoBehaviour, Initializable
         }
     }
 
+    public void BuildFloor()
+    {
+        DungeonManager.instance.Build("Floor");
+    }
+
     public void BuildRoom()
     {
         DungeonManager.instance.Build("Room");

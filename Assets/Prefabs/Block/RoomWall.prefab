@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1489867913715622830}
+  - component: {fileID: -5678668876971258470}
   - component: {fileID: 2335468609728505156}
   - component: {fileID: -7083434933106768071}
   m_Layer: 6
@@ -34,6 +35,33 @@ Transform:
   - {fileID: 6236541591821885784}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-5678668876971258470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4146347667481895857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b98b4ea8151cf418bd2f4686b22826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upSprite: {fileID: 21300006, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  downSprite: {fileID: 21300034, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  leftSprite: {fileID: 21300020, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  rightSprite: {fileID: 21300024, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  upLeftSprite: {fileID: 21300004, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  upRightSprite: {fileID: 21300008, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  downLeftSprite: {fileID: 21300032, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  downRightSprite: {fileID: 21300036, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  upLeftFSprite: {fileID: 21300010, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  upRightFSprite: {fileID: 21300014, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  downLeftFSprite: {fileID: 21300038, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  downRightFSprite: {fileID: 21300042, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  blank: {fileID: 21300028, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
+  sr: {fileID: 0}
+  initialize: 0
 --- !u!61 &2335468609728505156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -133,8 +161,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 6.4, y: 6.4, z: 6.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1489867913715622830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -179,7 +207,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300006, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
