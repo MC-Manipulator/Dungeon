@@ -52,27 +52,6 @@ public abstract class AbstractCreature : AbstractEntity
             Die();
         return hurt;
     }
-
-    protected AbstractCreature[] GetCollidingCreature(CreatureType type)
-    {
-        AbstractEntity[] entitys = GetCollidingColliders();
-        List<ValueTuple<AbstractCreature, float>> explorers = new();
-        foreach (AbstractEntity entity in entitys)
-        {
-            if (entity.entityType == EntityType.Creature)
-            {
-                AbstractCreature creature = (AbstractCreature)entity;
-                if (creature.creatureType == type)
-                {
-                    float distance = Vector2.Distance(mapPosition, creature.mapPosition);
-                    explorers.Add((creature, distance));
-                }
-            }
-        }
-        explorers.Sort((x, y) => x.Item2.CompareTo(y.Item2));
-
-        return explorers.Select(x => x.Item1).ToArray();
-    }
 }
 
 public enum CreatureType
