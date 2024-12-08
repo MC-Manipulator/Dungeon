@@ -7,15 +7,15 @@ using UnityEngine.PlayerLoop;
 
 public abstract class AbstractEntity : MonoBehaviour
 {
-    private Collider _collider;
-    public EntityType entityType;
-    public float currentHealth;
-    public float maxHealth;
-    public float attack;
-    public float defence;
-    public float speed;
-    public Vector2 mapPosition;
-    public float attackRange;
+    private Collider _collider;     // µ±Ç°Åö×²Ìå
+    public EntityType entityType;   // ÊµÌåÀàĞÍ
+    public float currentHealth;     // µ±Ç°½¡¿µÖµ
+    public float maxHealth;         // ×î´ó½¡¿µÖµ
+    public float attack;            // ¹¥»÷Á¦
+    public float defence;           // ·ÀÓùÁ¦
+    public float speed;             // ËÙ¶È
+    public Vector2 mapPosition;     // µØÍ¼×ø±ê
+    public float attackRange;       // ¹¥»÷·¶Î§
 
     protected abstract float Damage();
 
@@ -49,6 +49,7 @@ public abstract class AbstractEntity : MonoBehaviour
 
     public abstract void Attack(AbstractEntity target);
 
+    //  »ñÈ¡Óëµ±Ç°Åö×²Ìå½Ó´¥µÄËùÓĞAbstractEntity
     protected AbstractEntity[] GetCollidingColliders()
     {
         // Ê¹ï¿½ï¿½Physics.OverlapBoxï¿½ï¿½ï¿½ï¿½È¡ï¿½ëµ±Ç°ï¿½ï¿½×²ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½
@@ -68,6 +69,7 @@ public abstract class AbstractEntity : MonoBehaviour
         return entities;
     }
 
+    //  »ñÈ¡Óëµ±Ç°Åö×²Ìå½Ó´¥µÄAbstractCreature
     protected AbstractCreature[] GetCollidingCreature(CreatureType type)
     {
         AbstractEntity[] entitys = GetCollidingColliders();
@@ -91,6 +93,7 @@ public abstract class AbstractEntity : MonoBehaviour
 
     private void Start()
     {
+        // »ñÈ¡µ±Ç°Åö×²Ìå
         _collider = GetComponent<Collider>();
         if (_collider == null)
         {
