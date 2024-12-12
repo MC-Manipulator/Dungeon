@@ -8,12 +8,13 @@ public class Player : MonoBehaviour
     public static Player Instance;
     public int Health;
     public int Exp;
-
+    public PlayerInventoryManager playerInventoryManager;
     public Text HealthText;
     public Text ExpText;
-
+    
     private void Awake(){
         Instance = this;
+        playerInventoryManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventoryManager>();
     }
 
     public void IncreaseHealth(int value){
@@ -24,4 +25,5 @@ public class Player : MonoBehaviour
         Exp += value;
         ExpText.text = $"EXP:{Exp}";
     }
+
 }
