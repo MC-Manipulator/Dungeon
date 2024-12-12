@@ -153,27 +153,29 @@ public class EmptyBlock : AbstractBlock
         }
         else
         {
-            if (blockInIt != null && blockInIt != collision.gameObject && blockReadyToPlace != collision.gameObject && (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Floor"))
+            if (blockInIt != null)
             {
-                blockReadyToPlace = collision.gameObject;
-            }
-            if (blockInIt.name == "Wall" && blockReadyToPlace != null)
-            {
-                this.TurnGreen();
-                return;
-            }
-            if (blockInIt.tag == "Floor" && blockReadyToPlace != blockInIt && blockReadyToPlace != null)
-            {
-                this.TurnGreen();
-                return;
-            }
-
-            if (blockInIt.tag == "Wall" && blockInIt.name != "Wall" && collision.gameObject != blockInIt)
-            {
-                this.TurnRed();
-                if (!DungeonManager.instance.conflictBlockList.Contains(this.gameObject))
-                    DungeonManager.instance.conflictBlockList.Add(gameObject);
-                return;
+                if (blockInIt != collision.gameObject && blockReadyToPlace != collision.gameObject && (collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Floor"))
+                {
+                    blockReadyToPlace = collision.gameObject;
+                }
+                if (blockInIt.name == "Wall" && blockReadyToPlace != null)
+                {
+                    this.TurnGreen();
+                    return;
+                }
+                if (blockInIt.tag == "Floor" && blockReadyToPlace != blockInIt && blockReadyToPlace != null)
+                {
+                    this.TurnGreen();
+                    return;
+                }
+                if (blockInIt.tag == "Wall" && blockInIt.name != "Wall" && collision.gameObject != blockInIt)
+                {
+                    this.TurnRed();
+                    if (!DungeonManager.instance.conflictBlockList.Contains(this.gameObject))
+                        DungeonManager.instance.conflictBlockList.Add(gameObject);
+                    return;
+                }
             }
         }
 

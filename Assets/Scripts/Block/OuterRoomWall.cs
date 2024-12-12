@@ -15,7 +15,6 @@ public class OuterRoomWall : AbstractBlock
     public Sprite downLeftSprite;
     public Sprite downRightSprite;
 
-    public SpriteRenderer sr;
 
     void Awake()
     {

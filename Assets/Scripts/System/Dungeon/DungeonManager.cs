@@ -414,7 +414,7 @@ public class DungeonManager : MonoBehaviour, Initializable
 
     public void Place()
     {
-        if (chosingStartPoint && !hasChosenStartPoint)
+        if (chosingStartPoint && !hasChosenStartPoint && conflictBlockList.Count == 0)
         {
             hasChosenStartPoint = true;
             Debug.Log("已经选择起点");
@@ -425,9 +425,10 @@ public class DungeonManager : MonoBehaviour, Initializable
 
         }
 
-        if (chosingStartPoint && hasChosenStartPoint)
+        if (chosingStartPoint && hasChosenStartPoint && conflictBlockList.Count == 0)
         {
             isBuilding = false;
+            currBuildingObject.transform.SetParent(ZoneManager.instance.currentZone.GetComponent<Zone>().map.transform);
             foreach (GameObject gb in ZoneManager.instance.currentZone.GetComponent<Zone>().blanks)
             {
                 gb.GetComponent<EmptyBlock>().ActiveTrigger();

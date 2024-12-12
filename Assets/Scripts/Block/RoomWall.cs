@@ -15,7 +15,6 @@ public class RoomWall : AbstractBlock
     public Sprite downLeftSprite;
     public Sprite downRightSprite;
 
-    public SpriteRenderer sr;
 
     void Awake()
     {
@@ -34,11 +33,103 @@ public class RoomWall : AbstractBlock
         }
     }
 
+
+
     public override void Refresh()
     {
         if (!DungeonManager.instance.isBuilding)
         {
             Dictionary<Nearby, GameObject> dic = GetNearbyBlock.GetAll(gameObject);
+
+            SetSprite(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Up] = "Floor"
+                },
+                upSprite
+            );
+
+            SetSprite(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Down] = "Floor"
+                },
+                downSprite
+            );
+
+            SetSprite(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Left] = "Floor"
+                },
+                leftSprite
+            );
+
+            SetSprite(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Right] = "Floor"
+                },
+                rightSprite
+            );
+
+
+            SetSprite(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Up] = "Floor",
+                    [Nearby.Right] = "Floor"
+                },
+                upRightSprite
+            );
+
+            SetSprite(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Up] = "Floor",
+                    [Nearby.Left] = "Floor"
+                },
+                upLeftSprite
+            );
+
+            SetSprite(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Down] = "Floor",
+                    [Nearby.Left] = "Floor"
+                },
+                downLeftSprite
+            );
+
+            SetSprite(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Down] = "Floor",
+                    [Nearby.Right] = "Floor"
+                },
+                downRightSprite
+            );
+
+
+            ResetBlock(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Up] = "Floor",
+                    [Nearby.Down] = "Floor"
+                },
+                DungeonManager.instance.Floor
+            );
+
+            ResetBlock(
+                new Dictionary<Nearby, string>
+                {
+                    [Nearby.Left] = "Floor",
+                    [Nearby.Right] = "Floor"
+                },
+                DungeonManager.instance.Floor
+            );
+
+            /*
             if (dic.ContainsKey(Nearby.Up))
             {
                 if (dic[Nearby.Up].gameObject.tag == "Floor")
@@ -110,7 +201,7 @@ public class RoomWall : AbstractBlock
                     sr.sprite = downRightSprite;
 
                 }
-            }
+            }*/
         }
     }
 }

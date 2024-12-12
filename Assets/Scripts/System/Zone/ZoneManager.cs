@@ -57,7 +57,7 @@ public class ZoneManager : MonoBehaviour, Initializable
         newZone.map = map;
         newZone.entity = entity;
 
-        newZone.size = 20;
+        newZone.size = 30;
 
         newZone.Initialize();
 

@@ -18,6 +18,40 @@ public enum Nearby
 
 public class GetNearbyBlock
 {
+    public static string GetTypeInPos(Vector2 position)
+    {
+        string blockType = "";
+        float radius = 0.1f;
+        Collider2D[] blocks = Physics2D.OverlapCircleAll(position, radius);
+
+        foreach (Collider2D c in blocks)
+        {
+            if (c.gameObject.tag == "Wall" || c.gameObject.tag == "Floor")
+            {
+                blockType = c.gameObject.tag;
+            }
+        }
+
+        return blockType;
+    }
+
+    public static GameObject GetBlockInPos(Vector2 position)
+    {
+        GameObject block = null;
+        float radius = 0.1f;
+        Collider2D[] blocks = Physics2D.OverlapCircleAll(position, radius);
+
+        foreach (Collider2D c in blocks)
+        {
+            if (c.gameObject.tag == "Wall" || c.gameObject.tag == "Floor")
+            {
+                block = c.gameObject;
+            }
+        }
+
+        return block;
+    }
+
     public static Dictionary<Nearby, GameObject> GetAll(GameObject gb)
     {
         Dictionary<Nearby, GameObject> dic = new Dictionary<Nearby, GameObject>();
@@ -25,13 +59,11 @@ public class GetNearbyBlock
         int width = 1;
 
         float radius = 0.1f;
-        // 检测鼠标位置附近的碰撞体
         Collider2D[] up = Physics2D.OverlapCircleAll(gb.transform.position + new Vector3(0, width, 0), radius);
         Collider2D[] down = Physics2D.OverlapCircleAll(gb.transform.position + new Vector3(0, -width, 0), radius);
         Collider2D[] left = Physics2D.OverlapCircleAll(gb.transform.position + new Vector3(-width, 0, 0), radius);
         Collider2D[] right = Physics2D.OverlapCircleAll(gb.transform.position + new Vector3(width, 0, 0), radius);
 
-        // 检测鼠标位置附近的碰撞体
         Collider2D[] upLeft = Physics2D.OverlapCircleAll(gb.transform.position + new Vector3(-width, width, 0), radius);
         Collider2D[] upRight = Physics2D.OverlapCircleAll(gb.transform.position + new Vector3(width, width, 0), radius);
         Collider2D[] downLeft = Physics2D.OverlapCircleAll(gb.transform.position + new Vector3(-width, -width, 0), radius);
