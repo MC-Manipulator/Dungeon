@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b98b4ea8151cf418bd2f4686b22826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 0}
   upSprite: {fileID: 21300006, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
   downSprite: {fileID: 21300034, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
   leftSprite: {fileID: 21300020, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
@@ -60,7 +61,6 @@ MonoBehaviour:
   downLeftFSprite: {fileID: 21300038, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
   downRightFSprite: {fileID: 21300042, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
   blank: {fileID: 21300028, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
-  sr: {fileID: 0}
   initialize: 0
 --- !u!61 &2335468609728505156
 BoxCollider2D:
@@ -206,7 +206,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300006, guid: f2809b1c926ce484d8b5c8ead6805444, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

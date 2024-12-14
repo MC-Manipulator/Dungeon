@@ -35,6 +35,18 @@ public class CameraManager : MonoBehaviour, Initializable
     {
         Vector3 moveDirection = PlayerInputManager.instance.inputDirection;
 
+        if ((cameraObject.GetComponent<CameraTrigger>().reachUpBorder && moveDirection.y > 0) ||
+            (cameraObject.GetComponent<CameraTrigger>().reachDownBorder && moveDirection.y < 0))
+        {
+            moveDirection.y = 0;
+        }
+
+        if ((cameraObject.GetComponent<CameraTrigger>().reachLeftBorder && moveDirection.x < 0) || 
+            (cameraObject.GetComponent<CameraTrigger>().reachRightBorder && moveDirection.x > 0))
+        {
+            moveDirection.x = 0;
+        }
+
         cameraObject.transform.position += moveDirection * moveSpeed * currentZoom / maxZoom;
     }
 
@@ -54,6 +66,8 @@ public class CameraManager : MonoBehaviour, Initializable
         newZoom = Mathf.Clamp(newZoom, minZoom, maxZoom); // 限制在最小/最大范围内
         Camera.main.orthographicSize = newZoom;
 
+
+        cameraObject.GetComponent<BoxCollider2D>().size = new Vector2(newZoom * 16 / 4.5f, newZoom * 2);
         currentZoom = newZoom;
     }
 }

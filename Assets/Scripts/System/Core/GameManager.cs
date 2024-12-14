@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour, Initializable
     [Header("展示网格")]
     public bool isShowingMesh;
 
+    [Header("加载界面")]
+    public GameObject loadingMask;
 
     [Header("初始化列表")]
     public List<GameObject> initializableList;
@@ -58,6 +60,19 @@ public class GameManager : MonoBehaviour, Initializable
         gameStage = GameStage.DungeonBuilding;
         PlayerInputManager.instance.PauseEvent += Pause;
         PlayerInputManager.instance.ResumeEvent += Resume;
+        StartCoroutine("HideLoadingMask");
+    }
+
+    IEnumerator ShowLoadingMask()
+    {
+        loadingMask.GetComponent<Animator>().SetBool("Disappear", false);
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator HideLoadingMask()
+    {
+        yield return new WaitForSeconds(1f);
+        loadingMask.GetComponent<Animator>().SetBool("Disappear", true);
     }
 
     public void SwitchGameStage()
@@ -113,6 +128,13 @@ public class GameManager : MonoBehaviour, Initializable
 
     public void ExitToMenu()
     {
+        StartCoroutine("ShowLoadingMask");
+        StartCoroutine("WaitToExitToMenu");
+    }
+
+    IEnumerator WaitToExitToMenu()
+    {
+        yield return new WaitForSeconds(1f);
         SceneManager.instance.switchToMenu();
     }
 
