@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class AbstractCreature : AbstractEntity
 {
-    protected abstract void Move();
+    //protected abstract void Move();
 }
