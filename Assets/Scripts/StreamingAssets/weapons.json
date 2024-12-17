@@ -1,0 +1,14 @@
+[
+    {
+        "weaponName": "Bone Knife",
+        "damage": 10,
+        "cost": 50,
+        "description": "A simple but deadly knife."
+    },
+    {
+        "weaponName": "Flame Staff",
+        "damage": 25,
+        "cost": 100,
+        "description": "Unleashes fiery attacks."
+    }
+]
