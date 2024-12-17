@@ -1,0 +1,11 @@
+using UnityEngine;
+
+public class WeaponUpgradeSystem : MonoBehaviour
+{
+    public void UpgradeWeapon(WeaponData weapon)
+    {
+        weapon.damage += 10; // 升级后增加伤害
+        weapon.cost += 20;   // 升级后增加费用
+        Debug.Log($"{weapon.weaponName} upgraded! New damage: {weapon.damage}, cost: {weapon.cost}");
+    }
+}
