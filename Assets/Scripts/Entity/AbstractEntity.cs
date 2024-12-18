@@ -7,15 +7,15 @@ using UnityEngine.PlayerLoop;
 
 public abstract class AbstractEntity : MonoBehaviour
 {
-    private Collider _collider;     // µ±Ç°Åö×²Ìå
-    public EntityType entityType;   // ÊµÌåÀàÐÍ
-    public float currentHealth;     // µ±Ç°½¡¿µÖµ
-    public float maxHealth;         // ×î´ó½¡¿µÖµ
-    public float attack;            // ¹¥»÷Á¦
-    public float defence;           // ·ÀÓùÁ¦
-    public float speed;             // ËÙ¶È
-    public Vector2 mapPosition;     // µØÍ¼×ø±ê
-    public float attackRange;       // ¹¥»÷·¶Î§
+    private Collider _collider;     // ï¿½ï¿½Ç°ï¿½ï¿½×²ï¿½ï¿½
+    public EntityType entityType;   // Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float currentHealth;     // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Öµ
+    public float maxHealth;         // ï¿½ï¿½ó½¡¿ï¿½Öµ
+    public float attack;            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float defence;           // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float speed;             // ï¿½Ù¶ï¿½
+    public Vector2 mapPosition;     // ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½
+    public float attackRange;       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
 
     protected abstract float Damage();
 
@@ -49,7 +49,7 @@ public abstract class AbstractEntity : MonoBehaviour
 
     public abstract void Attack(AbstractEntity target);
 
-    //  »ñÈ¡Óëµ±Ç°Åö×²Ìå½Ó´¥µÄËùÓÐAbstractEntity
+    //  ï¿½ï¿½È¡ï¿½ëµ±Ç°ï¿½ï¿½×²ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½AbstractEntity
     protected AbstractEntity[] GetCollidingColliders()
     {
         // Ê¹ï¿½ï¿½Physics.OverlapBoxï¿½ï¿½ï¿½ï¿½È¡ï¿½ëµ±Ç°ï¿½ï¿½×²ï¿½ï¿½Ó´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×²ï¿½ï¿½
@@ -69,7 +69,7 @@ public abstract class AbstractEntity : MonoBehaviour
         return entities;
     }
 
-    //  »ñÈ¡Óëµ±Ç°Åö×²Ìå½Ó´¥µÄAbstractCreature
+    //  ï¿½ï¿½È¡ï¿½ëµ±Ç°ï¿½ï¿½×²ï¿½ï¿½Ó´ï¿½ï¿½ï¿½AbstractCreature
     protected AbstractCreature[] GetCollidingCreature(CreatureType type)
     {
         AbstractEntity[] entitys = GetCollidingColliders();
@@ -93,7 +93,7 @@ public abstract class AbstractEntity : MonoBehaviour
 
     private void Start()
     {
-        // »ñÈ¡µ±Ç°Åö×²Ìå
+        // ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½×²ï¿½ï¿½
         _collider = GetComponent<Collider>();
         if (_collider == null)
         {
