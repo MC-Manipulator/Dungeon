@@ -1,0 +1,11 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "WeaponData", menuName = "Dungeon/WeaponData", order = 1)]
+public class WeaponData : ScriptableObject
+{
+    public string weaponName; // 武器名称
+    public Sprite icon;       // 武器图标
+    public int damage;        // 伤害值
+    public int cost;          // 购买/制造成本
+    public string description; // 武器描述
+}

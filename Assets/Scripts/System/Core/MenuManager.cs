@@ -10,7 +10,9 @@ public class MenuManager : MonoBehaviour
     //大多数Manager类会有一个静态的instance变量，通过该变量可以实现单例模式
     //使用单例模式可以免去一些调用上的麻烦，但过多使用单例模式也会导致结构上的混乱
     //因此，在一些本次项目中，由我编写的结构里，尽管有部分地方用到单例模式，但整体还是呈现部分-整体的关系
-    public static MenuManager instance; 
+    public static MenuManager instance;
+
+    public GameObject loadingMask;
 
     void Awake()
     {
@@ -19,10 +21,32 @@ public class MenuManager : MonoBehaviour
             instance = this;
         if (instance != null && instance != this)
             Destroy(gameObject);
+
+        loadingMask.GetComponent<Animator>().SetBool("Disappear", true);
+        loadingMask.GetComponent<Animator>().Play("Disappear");
+    }
+
+    IEnumerator ShowLoadingMask()
+    {
+        loadingMask.GetComponent<Animator>().SetBool("Disappear", false);
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator HideLoadingMask()
+    {
+        yield return new WaitForSeconds(1f);
+        loadingMask.GetComponent<Animator>().SetBool("Disappear", true);
     }
 
     public void StartGame()
     {
+        StartCoroutine("ShowLoadingMask");
+        StartCoroutine("WaitToStartGame");
+    }
+
+    IEnumerator WaitToStartGame()
+    {
+        yield return new WaitForSeconds(1f);
         SceneManager.instance.switchToDungeon();
     }
 

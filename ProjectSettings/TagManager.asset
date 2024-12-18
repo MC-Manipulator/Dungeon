@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - UI
+  - Wall
+  - Floor
+  - Door
+  - CameraUpBorder
+  - CameraDownBorder
+  - CameraLeftBorder
+  - CameraRightBorder
   layers:
   - Default
   - TransparentFX
@@ -12,10 +19,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Floor
+  - Mesh
+  - Camera
   - 
   - 
   - 
@@ -41,4 +48,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Mesh
+    uniqueID: 2561651253
     locked: 0
