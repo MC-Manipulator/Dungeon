@@ -7,30 +7,15 @@ using UnityEngine.PlayerLoop;
 
 public abstract class AbstractEntity : MonoBehaviour
 {
-    private Collider _collider;     // ��ǰ��ײ��
-    public EntityType entityType;   // ʵ������
-    public float currentHealth;     // ��ǰ����ֵ
-    public float maxHealth;         // ��󽡿�ֵ
-    public float attack;            // ������
-    public float defence;           // ������
-    public float speed;             // �ٶ�
-    public Vector2 mapPosition;     // ��ͼ����
-    public float attackRange;       // ������Χ
-
-    protected abstract float Damage();
-
-    private Collider _collider;
-    public EntityType entityType;
     public float currentHealth;
     public float maxHealth;
     public float attack;
     public float defence;
     public float speed;
     public Vector2 mapPosition;
-    public float attackRange;
 
-    protected abstract float Damage();
-
+    protected abstract void Damage();
+    protected abstract void Hurt();
     protected abstract void Die();
 
     private void Awake()
