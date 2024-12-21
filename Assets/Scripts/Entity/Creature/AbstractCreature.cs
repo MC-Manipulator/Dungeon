@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,9 @@ public class Node
     public Node Parent { get; set; }
     public float G { get; set; } // 从起点到当前节点的代价
     public float H { get; set; } // 从当前节点到终点的启发式代价
-    public float F { get { return G + H; } } // 总代价
+
+    public float F
+    { get { return G + H; } } // 总代价
 
     public Node(Vector2 position, Node parent, float g, float h)
     {

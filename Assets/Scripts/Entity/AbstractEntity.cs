@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +12,15 @@ public abstract class AbstractEntity : MonoBehaviour
     public float attack;
     public float defence;
     public float speed;
+    public float attackRange;
+    public EntityType entityType;
+    private Collider _collider;
     public Vector2 mapPosition;
 
-    protected abstract void Damage();
+    protected abstract float Damage();
+
     protected abstract void Hurt();
+
     protected abstract void Die();
 
     private void Awake()
@@ -33,11 +38,15 @@ public abstract class AbstractEntity : MonoBehaviour
     }
 
     protected abstract void PreAwake();
+
     protected abstract void MidAwake();
+
     protected abstract void PostAwake();
 
     protected abstract void PreUpdate();
+
     protected abstract void MidUpdate();
+
     protected abstract void PostUpdate();
 
     public abstract float Hurt(float damage);
