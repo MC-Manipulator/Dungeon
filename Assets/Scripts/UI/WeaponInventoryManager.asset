@@ -1,0 +1,26 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class WeaponInventoryManager : MonoBehaviour
+{
+    public GameObject weaponCardPrefab; // 卡片预制体
+    public Transform cardContainer;    // 卡片容器
+    public List<WeaponData> weaponList;
+
+    void Start()
+    {
+        LoadWeapons();
+    }
+
+    void LoadWeapons()
+    {
+        foreach (var weapon in weaponList)
+        {
+            GameObject card = Instantiate(weaponCardPrefab, cardContainer);
+            card.transform.Find("WeaponIcon").GetComponent<Image>().sprite = weapon.icon;
+            card.transform.Find("WeaponName").GetComponent<Text>().text = weapon.weaponName;
+            card.transform.Find("Damage").GetComponent<Text>().text = "Damage: " + weapon.damage;
+        }
+    }
+}
